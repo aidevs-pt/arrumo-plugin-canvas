@@ -20,11 +20,13 @@ An animation layer can be a small web page. The agent writes it when a design ne
 
 | Library | Version | License | Use |
 | --- | --- | --- | --- |
+| motion | 0.1.0 | AGPL-3.0 | Arrumo's own presets: text effects, timed captions, terminal, chat, cursor and notification shots, charts, a logo sting, transitions and a globe |
+| shaders | 0.1.0 | AGPL-3.0 | Arrumo's own full-frame WebGL2 effects (liquid, mesh, aurora, plasma, caustics, cells, rays, stars, waves, halftone, grain, pixels), or the agent's own GLSL |
 | three.js | 0.170.0 | MIT | 3D scenes with WebGL |
 | lottie-web | 5.13.0 | MIT | Lottie vector animation |
 | D3 | 7.9.2 | ISC | Charts, maps and diagrams |
 
-WebGL, 2D canvas, SVG and CSS animation work without a library. [`guide.md`](guide.md) is what the agent reads before writing a page.
+Presets and effects draw in the video's colours and brand fonts by default: Arrumo passes each page the brand palette and the layer's background, text and accent colours. The agent uses a preset when it fits, adapts it, or writes its own page. WebGL, 2D canvas, SVG and CSS animation work without a library. [`guide.md`](guide.md) is what the agent reads before writing a page.
 
 ## How pages are drawn
 

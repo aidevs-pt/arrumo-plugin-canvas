@@ -77,6 +77,22 @@
     },
     "libraries": [
       {
+        "id": "motion",
+        "version": "0.1.0",
+        "file": "lib/motion.js",
+        "module": true,
+        "license": "AGPL-3.0-only",
+        "description": "Arrumo's motion presets in the video's colours: text effects, timed captions, terminal, chat, cursor and notification shots, charts, logo sting, transitions and a globe. See the guide."
+      },
+      {
+        "id": "shaders",
+        "version": "0.1.0",
+        "file": "lib/shaders.js",
+        "module": true,
+        "license": "AGPL-3.0-only",
+        "description": "Arrumo's full-frame WebGL2 shader effects in the video's colours (liquid, mesh, aurora, plasma, caustics, cells, rays, stars, waves, halftone, grain, pixels), or your own GLSL."
+      },
+      {
         "id": "three",
         "version": "0.170.0",
         "file": "lib/three.module.min.js",

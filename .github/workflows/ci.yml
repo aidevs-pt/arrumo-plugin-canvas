@@ -64,7 +64,8 @@ jobs:
                   problems.append(f"{name} is missing")
           notices = (root / "THIRD_PARTY_NOTICES.md").read_text(encoding="utf-8") if (root / "THIRD_PARTY_NOTICES.md").is_file() else ""
           for library in canvas.get("libraries", []):
-              if library["file"] not in notices:
+              # Arrumo's own libraries are covered by this repository's license.
+              if library["license"] != "AGPL-3.0-only" and library["file"] not in notices:
                   problems.append(f"THIRD_PARTY_NOTICES.md lacks {library['file']}")
 
           for script in root.glob("tools/*.py"):

@@ -25,8 +25,68 @@ layers, which stay sharper and are cheaper to change.
 - Let the main movement finish by the middle of the layer, then hold or drift slowly, so viewers have
   time to look.
 - Prefer one focal object. Two or three supporting motions are plenty.
-- Use the brand colours from the brief and the fonts `brand-heading` and `brand-body` for any text drawn
-  on the canvas.
+- Draw in the video's colours: `arrumo.theme` has `colors` (the brand palette), `background`, `text`
+  and `accent`, also as the CSS variables `--arrumo-background`, `--arrumo-text`, `--arrumo-accent`
+  and `--arrumo-color-1` onwards. Set text in the fonts `brand-heading` and `brand-body`.
+
+## Presets and shader effects
+
+Two libraries hold ready-made pieces drawn in the video's colours and fonts. Reach for one when it
+is what the scene needs, and adapt it: change its options, combine several, or lay your own drawing
+over it. They are a head start, not a menu. When none fits, or a bespoke piece would be stronger,
+write your own code with any library or none.
+
+`motion` presets each take an element and options and answer a `render(t)`:
+
+```html
+<script type="module">
+import { terminal, chatPrompt, combine } from "motion";
+window.render = combine(
+  terminal(document.body, { lines: [{ text: "npm run build", type: "command" }, { text: "Done", type: "success" }] }),
+);
+</script>
+```
+
+Shared options: `color`, `accent`, `font`, `size` (a fraction of the height), `start` (seconds),
+`speed`, `align`. Mark words with `*asterisks*` to colour them in the accent.
+
+- Text: `typewriter` (`text`, `cps`), `wordRise` (words rise and sharpen in turn), `focusTitle` (the
+  first word opens large, then settles into the line), `scramble` (decodes from symbols), `highlight`
+  (a marker sweeps behind the marked words), `wordSwap` (`prefix`, `words`: a rolling word), `counter`
+  (`to`, `prefix`, `suffix`, `decimals`: rolling digits), `slam` (one word at a time, big).
+- Captions: `captions` with `words: [{text, start, end}]` and `style` `"highlight"`, `"pill"`,
+  `"pop"` or `"fill"`; `perLine`, `y`.
+- Screens: `terminal` (`lines` of type `command`, `output`, `success`, `error` or `dim`), `chatPrompt`
+  (`prompt` typed, sent, `answer` streams in), `cursor` (`path: [{x, y, at, click}]`),
+  `notifications` (`items: [{title, body, at}]`). Windows follow the background's lightness unless
+  `theme: "light"` or `"dark"` is given.
+- Data: `barChart` (`values`, `labels`, `highlight`), `lineChart` (`values`, `suffix`), `ring`
+  (`value` out of 100, `label`).
+- Brand and transitions: `logoSting` (`text`, `tagline`), `bloom` (a circle covers or reveals the
+  frame; `mode`, `origin`), `panels` (staggered wipes), `globe` (`arcs: [[lat, lon, lat, lon]]`,
+  `places`).
+- Helpers to build your own: `theme`, `ease`, `progress(t, start, duration, curve)`, `spring(t)`,
+  `lerp`, `clamp`, `mix`, `readable`, `random(seed)`, `combine`.
+
+`shaders` draws a full-frame effect on a canvas: backgrounds, textures and atmosphere rather than
+objects.
+
+```html
+<canvas id="fx"></canvas>
+<script type="module">
+import { shader, effects } from "shaders";
+window.render = shader(document.getElementById("fx"), effects.aurora, { speed: 0.6 });
+</script>
+```
+
+Effects: `liquid` (ink folding through water), `mesh` (soft drifting colour pools with grain),
+`aurora`, `plasma`, `caustics` (light through water), `cells` (shifting Voronoi with glowing edges),
+`rays` (beams from above), `stars` (drifting starfield), `waves` (flowing contour lines),
+`halftone` (pulsing print dots), `grain` (film grain and vignette, transparent, to lay over a scene)
+and `pixels` (an LED grid lit by drifting blobs). Options: `colors` (up to four; the first is the
+base), `speed`, `scale`, `intensity`, `seed`, `values`. Write your own effect as GLSL defining
+`vec4 effect(vec2 uv, vec2 px, float t)` with the helpers `noise`, `fbm`, `hash`, `palette`,
+`rotate` and `aspect`.
 
 ## three.js
 
