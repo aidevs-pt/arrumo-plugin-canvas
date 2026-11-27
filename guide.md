@@ -160,8 +160,8 @@ frame. CSS animations and SVG animate elements also follow the layer's clock, so
 
 ## Recipes
 
-Each of these draws in a few milliseconds a frame without a graphics card. Adapt them; they show
-the technique, not a finished design.
+The code recipes each drew a frame in a few milliseconds without a graphics card. Adapt them; they
+show the technique, not a finished design.
 
 Particles such as confetti, snow, sparks or dust: give each particle fixed random values from
 `random(index)`, then place it from `t` with a closed formula, never by stepping a simulation. Slow
@@ -197,6 +197,7 @@ of the same idea.
 
 ```js
 const projection = d3.geoOrthographic().fitExtent([[width * 0.2, height * 0.08], [width * 0.8, height * 0.92]], { type: "Sphere" });
+const route = d3.select("#map").append("path").attr("fill", "none").attr("stroke", arrumo.theme.accent);
 const path = d3.geoPath(projection), along = d3.geoInterpolate([-9.14, 38.72], [-74.0, 40.71]);
 window.render = (t) => {
   const drawn = ease((t - 1) / 2);
