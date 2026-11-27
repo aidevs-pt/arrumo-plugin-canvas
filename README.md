@@ -12,7 +12,7 @@
   <a href="https://www.aidevs.pt/tools/arrumo/docs/plugins/canvas"><img alt="Docs in English, Spanish and Portuguese" src="https://img.shields.io/badge/docs-EN%20%C2%B7%20ES%20%C2%B7%20PT-111"></a>
 </p>
 
-This plugin ships with [Arrumo AI Video Editor](https://github.com/aidevs-pt/arrumo-video-editor), the free, open-source desktop app where an AI agent writes, designs, voices and cuts your videos and you approve every step. Turn it on or off in **Settings › Plugins**, and download its renderer there the first time.
+This plugin ships with [Arrumo AI Video Editor](https://github.com/aidevs-pt/arrumo-video-editor), the free, open-source desktop app where an AI agent writes, designs, voices and cuts your videos and you approve every step. It comes installed and on; turn it on or off in **Settings › Plugins**.
 
 ## What it adds
 
@@ -28,7 +28,7 @@ WebGL, 2D canvas, SVG and CSS animation work without a library. [`guide.md`](gui
 
 ## How pages are drawn
 
-- **Renderer.** `manifest.json` names Chrome for Testing's headless shell 158.0.8127.88 for Linux (x64 and Arm), macOS (Apple silicon and Intel) and Windows (x64), with each archive's size and SHA-256. Arrumo downloads only the one for your computer, and only when you ask, then checks it before unpacking.
+- **Renderer.** `manifest.json` names Chrome for Testing's headless shell 158.0.8127.88 for Linux (x64 and Arm), macOS (Apple silicon and Intel) and Windows (x64), with each archive's size and SHA-256. While the plugin is on, Arrumo downloads the one for your computer in the background, checks its size and digest before unpacking, and keeps it next to its data. The plugin page shows its state and can remove or download it again.
 - **Isolation.** Pages have no network, no files and no access to Arrumo: every request is answered from the libraries above or refused. On Linux the browser also runs inside Bubblewrap with no network. On macOS and Windows it keeps its own sandbox.
 - **Timing.** Time moves only when Arrumo draws a frame, so the same page gives the same frames every time, including `requestAnimationFrame`, CSS and SVG animation.
 

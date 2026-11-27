@@ -16,9 +16,9 @@
       "pt": "3D, partículas e animação vetorial"
     },
     "body": {
-      "en": "The agent can now draw parts of an animation with web code, such as a spinning product, a chart that builds itself or a Lottie animation. Download the renderer once in Settings › Plugins.",
-      "es": "El agente ya puede dibujar partes de una animación con código web, como un producto que gira, un gráfico que se construye solo o una animación Lottie. Descarga el renderizador una vez en Ajustes › Complementos.",
-      "pt": "O agente já pode desenhar partes de uma animação com código web, como um produto a rodar, um gráfico que se constrói sozinho ou uma animação Lottie. Descarrega o renderizador uma vez em Definições › Plugins."
+      "en": "The agent can now draw parts of an animation with web code, such as a spinning product, a chart that builds itself or a Lottie animation. Arrumo downloads the renderer by itself the first time.",
+      "es": "El agente ya puede dibujar partes de una animación con código web, como un producto que gira, un gráfico que se construye solo o una animación Lottie. Arrumo descarga el renderizador por sí solo la primera vez.",
+      "pt": "O agente já pode desenhar partes de uma animação com código web, como um produto a rodar, um gráfico que se constrói sozinho ou uma animação Lottie. O Arrumo descarrega o renderizador sozinho da primeira vez."
     }
   },
   "icon": "icon.svg",
