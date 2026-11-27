@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 17,
+  "id": "canvas",
+  "name": "Canvas layers",
+  "description": "Lets the agent draw animation layers as small web pages: 3D with three.js, vector animation with Lottie, charts with D3, and anything WebGL, canvas, SVG or CSS can draw.",
+  "capabilities": {
+    "canvas-render": {
+      "name": "Canvas layers",
+      "description": "Draw animation layers with web code, frame by frame, in an isolated browser."
+    }
+  },
+  "introduction": {
+    "headline": {
+      "en": "3D, particles and vector animation",
+      "es": "3D, partículas y animación vectorial",
+      "pt": "3D, partículas e animação vetorial"
+    },
+    "body": {
+      "en": "The agent can now draw parts of an animation with web code, such as a spinning product, a chart that builds itself or a Lottie animation. Download the renderer once in Settings › Plugins.",
+      "es": "El agente ya puede dibujar partes de una animación con código web, como un producto que gira, un gráfico que se construye solo o una animación Lottie. Descarga el renderizador una vez en Ajustes › Complementos.",
+      "pt": "O agente já pode desenhar partes de uma animação com código web, como um produto a rodar, um gráfico que se constrói sozinho ou uma animação Lottie. Descarrega o renderizador uma vez em Definições › Plugins."
+    }
+  },
+  "icon": "icon.svg",
+  "translations": {
+    "es": {
+      "description": "Permite al agente dibujar capas de animación como pequeñas páginas web: 3D con three.js, animación vectorial con Lottie, gráficos con D3 y todo lo que WebGL, canvas, SVG o CSS pueden dibujar.",
+      "capabilities": {
+        "canvas-render": {
+          "name": "Capas de lienzo",
+          "description": "Dibuja capas de animación con código web, fotograma a fotograma, en un navegador aislado."
+        }
+      }
+    },
+    "pt": {
+      "description": "Permite ao agente desenhar camadas de animação como pequenas páginas web: 3D com three.js, animação vetorial com Lottie, gráficos com D3 e tudo o que WebGL, canvas, SVG ou CSS conseguem desenhar.",
+      "capabilities": {
+        "canvas-render": {
+          "name": "Camadas de tela",
+          "description": "Desenha camadas de animação com código web, fotograma a fotograma, num navegador isolado."
+        }
+      }
+    }
+  },
+  "canvasRenderer": {
+    "browser": {
+      "linux-x64": {
+        "url": "https://storage.googleapis.com/chrome-for-testing-public/158.0.8127.88/linux64/chrome-headless-shell-linux64.zip",
+        "sha256": "63401333cc587645bfaeea7f0c90958b327d249251e23954a47f30112ca23d5b",
+        "size": 132091593,
+        "executable": "chrome-headless-shell-linux64/chrome-headless-shell"
+      },
+      "linux-arm64": {
+        "url": "https://storage.googleapis.com/chrome-for-testing-public/158.0.8127.88/linux-arm64/chrome-headless-shell-linux-arm64.zip",
+        "sha256": "9f89b7ef6574e4bbf6ddda9f17f1fab5626e93d6f7d852653232d0d3554df975",
+        "size": 129942265,
+        "executable": "chrome-headless-shell-linux-arm64/chrome-headless-shell"
+      },
+      "macos-arm64": {
+        "url": "https://storage.googleapis.com/chrome-for-testing-public/158.0.8127.88/mac-arm64/chrome-headless-shell-mac-arm64.zip",
+        "sha256": "69320f6869c4defbbdac8b8fa83aef65dc63975e83bbd06899b75dbea5c464b3",
+        "size": 105060087,
+        "executable": "chrome-headless-shell-mac-arm64/chrome-headless-shell"
+      },
+      "macos-x64": {
+        "url": "https://storage.googleapis.com/chrome-for-testing-public/158.0.8127.88/mac-x64/chrome-headless-shell-mac-x64.zip",
+        "sha256": "dc1ac31965cb2ec7794aed8c66127aceea304ae15353cd56fc4b8bde44091548",
+        "size": 112314759,
+        "executable": "chrome-headless-shell-mac-x64/chrome-headless-shell"
+      },
+      "windows-x64": {
+        "url": "https://storage.googleapis.com/chrome-for-testing-public/158.0.8127.88/win64/chrome-headless-shell-win64.zip",
+        "sha256": "e935ea2d4633495b5e9ab7bc66bcd982806329c0ee9ecbafc1ac9596a3b34cdb",
+        "size": 127879225,
+        "executable": "chrome-headless-shell-win64/chrome-headless-shell.exe"
+      }
+    },
+    "libraries": [
+      {
+        "id": "three",
+        "version": "0.170.0",
+        "file": "lib/three.module.min.js",
+        "module": true,
+        "license": "MIT",
+        "description": "3D scenes with WebGL: import * as THREE from \"three\". Create the renderer with alpha: true and preserveDrawingBuffer: true, and call renderer.render in window.render."
+      },
+      {
+        "id": "lottie",
+        "version": "5.13.0",
+        "file": "lib/lottie.min.js",
+        "module": false,
+        "license": "MIT",
+        "description": "Plays Lottie (Bodymovin) JSON written inline: the global lottie; load with autoplay: false and call goToAndStop(t * 1000, false) in window.render."
+      },
+      {
+        "id": "d3",
+        "version": "7.9.2",
+        "file": "lib/d3.min.js",
+        "module": false,
+        "license": "ISC",
+        "description": "Data-driven SVG for charts, maps and diagrams: the global d3; compute each frame's state from t rather than with d3 transitions."
+      }
+    ],
+    "guide": "guide.md"
+  }
+}
