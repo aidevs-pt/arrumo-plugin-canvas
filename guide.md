@@ -157,3 +157,52 @@ window.render = (t) => bars.attr("height", (v, i) => y(v) * Math.min(Math.max((t
 A 2D canvas suits particles, generative patterns and progress rings: clear it at the start of each
 frame. CSS animations and SVG animate elements also follow the layer's clock, so they work without a
 `render` function.
+
+## Recipes
+
+Each of these draws in a few milliseconds a frame without a graphics card. Adapt them; they show
+the technique, not a finished design.
+
+Particles such as confetti, snow, sparks or dust: give each particle fixed random values from
+`random(index)`, then place it from `t` with a closed formula, never by stepping a simulation. Slow
+travel with `(1 - Math.exp(-drag * t)) / drag`, add gravity as `0.5 * g * t * t`, flip a piece with
+`Math.cos(spin * t)` on one axis, and fade the whole burst out once it has made its point.
+
+```js
+const travel = (1 - Math.exp(-1.6 * t)) / 1.6;
+const x = width / 2 + Math.cos(p.angle) * p.speed * travel * height;
+const y = height * 0.6 + Math.sin(p.angle) * p.speed * travel * height + 0.11 * t * t * height;
+```
+
+Flow along a connector: draw the line with `pathLength="1"`, `stroke-dasharray="1"` and a
+`stroke-dashoffset` that eases from 1 to 0, then move a small dot with `getPointAtLength` to show
+which way things travel. Bring each node in before the line that leaves it.
+
+Isometric diagrams: use three.js with an `OrthographicCamera` at `(10, 10, 10)` looking at the
+origin, simple boxes in the brand colours, an ambient light and one directional light from above so
+the three visible faces differ in shade. Stack or slide the pieces in one at a time.
+
+```js
+const view = 6, aspect = width / height;
+const camera = new THREE.OrthographicCamera(-view * aspect / 2, view * aspect / 2, view / 2, -view / 2, 0.1, 100);
+camera.position.set(10, 10, 10);
+camera.lookAt(0, 0, 0);
+```
+
+Routes and places on a globe: D3 projects a sphere with `d3.geoOrthographic()`, a grid of meridians
+and parallels with `d3.geoGraticule10()`, and a great-circle route with `d3.geoInterpolate(from, to)`
+drawn up to an eased fraction. No coastline or country shapes are bundled, so show routes, places
+and the grid, never a land outline you would have to invent. The `globe` preset is the quick version
+of the same idea.
+
+```js
+const projection = d3.geoOrthographic().fitExtent([[width * 0.2, height * 0.08], [width * 0.8, height * 0.92]], { type: "Sphere" });
+const path = d3.geoPath(projection), along = d3.geoInterpolate([-9.14, 38.72], [-74.0, 40.71]);
+window.render = (t) => {
+  const drawn = ease((t - 1) / 2);
+  route.attr("d", path({ type: "LineString", coordinates: d3.range(0, drawn, 0.02).concat(drawn).map(along) }));
+};
+```
+
+Equations and formulas: write each term as its own text element in one row and reveal the terms in
+the order they are spoken, then highlight the term the narration is explaining in the accent colour.
